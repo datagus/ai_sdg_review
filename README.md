@@ -5,9 +5,13 @@ This repository contains all scripts, images, and data used in our **Systematic 
 ## Repository Structure
 
 📂 database/      # Contains datasets used for analysis and extracted data
+
 📂 images/        # Stores visual representations, plots, and figures
+
 📂 python/        # Python scripts for data processing, analysis, and visualization
+
 📂 tableau/       # Tableau files and dashboards related to the review
+
 📂 word_analysis/ # Scripts and outputs related to text analysis
 
 
