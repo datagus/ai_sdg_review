@@ -1,23 +1,17 @@
-# Systematic Literature Review Repository
+# Artificial Intelligence for Sustainable Development: A Systematic Review (Repository)
 
-This repository contains all scripts, images, and data used in our **Systematic Literature Review (SLR)**. The goal is to maintain an organized structure for easy access and reproducibility.
+This repository contains all scripts, images, and data used in our review article. The goal is to maintain an organized structure for easy access and reproducibility.
 
 ## Repository Structure
 
 - **database/**  
-  Contains datasets used for analysis and extracted data.
+  Contains the database both in a SQL dump file and in separate excel files. The database is structured with independent tables to avoid redundancy and ensure data coherence.
 - **images/**  
-  Stores visual representations, plots, and figures.
+  Stores all the figures used in the manuscript and supplementary information
 - **python/**  
-  Python scripts for data processing, analysis, and visualization.
+  Python for data analysis of the master table and pushing into sql
 - **tableau/**  
-  Tableau files and dashboards related to the review.
+  Tableau package workbook file. It doesn't require a connection to MySQL as all data is exracted
 - **word_analysis/**  
-  Scripts and outputs related to text analysis.
+  Scripts and outputs from the R word analysis.
 
-## Usage
-
-- All Python scripts are inside the `python/` directory.
-- Processed datasets and extracted information are located in the `database/` directory.
-- Visualizations, figures, and charts are stored in the `images/` and `tableau/` directories.
-- Any scripts related to word or text analysis can be found in `word_analysis/`.
