@@ -4,8 +4,10 @@ This repository contains all scripts, images, and data used in our review articl
 
 ## Repository Structure
 
-- **database/**  
-  Contains the database both in a SQL dump file and in separate excel files. The database is structured with independent tables to avoid redundancy and ensure data coherence.
+- **database/** :
+   Contains the database:
+   # One folder with the sql files (SQL dump and database setup)
+   # The master table using for the coding process and all the database separated in differenct excel sheets.The database is structured with independent tables to avoid redundancy and ensure data coherence.
 - **images/**  
   Stores all the figures used in the manuscript and supplementary information
 - **python/**  
