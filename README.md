@@ -23,6 +23,7 @@ Welcome to the **Systematic Literature Review (SLR)** repository! This repositor
 Below is a simplified description of each main folder:
 
 
+.
 ├── database
 │   ├── EER_diagram.mwb            # MySQL Workbench EER diagram
 │   ├── database_dump.sql          # SQL dump of the database
@@ -32,34 +33,30 @@ Below is a simplified description of each main folder:
 ├── excel_tables
 │   ├── empirical_clusters_revised.xlsx
 │   ├── environment.xlsx
-│   ├── …
-│   # These Excel files store data derived from or imported into SQL.
+│   ├── …                          # These Excel files store data derived from or imported into SQL.
 │
 ├── images
-│   └── … # Vector images used in the article
+│   └── …                          # Vector images used in the article
 │
 ├── python
-│   ├── pdf_extraction.py    # Script to extract text from PDFs using Python
-│   ├── pushing_to_sql.ipynb # Script/Notebook to insert data into SQL
-│   ├── from_sql.ipynb       # Script/Notebook to pull data from SQL
-│   ├── config.json          # Configurations (e.g., database credentials)
-│   └── …
+│   ├── pdf_extraction.py          # Script to extract text from PDFs using Python
+│   ├── pushing_to_sql.ipynb       # Script/Notebook to insert data into SQL
+│   ├── from_sql.ipynb             # Script/Notebook to pull data from SQL
+│   ├── config.json                # Configurations (e.g., database credentials)
+│   └── … 
 │
 ├── R-files
 │   ├── word_analysis
 │   │   ├── package_draft.R
 │   │   ├── normal_cloud.R
-│   │   └── …
-│   │   # Scripts performing word analysis, detrended correspondence analysis, etc.
+│   │   └── …                      # Scripts performing word analysis, detrended correspondence analysis, etc.
 │   └── text_files
-│       └── …
-│       # Output from certain R-based analyses
+│       └── …                      # Output from certain R-based analyses
 │
 ├── tableau
-│   └── analysis.twbx
-│   # Tableau workbook for visualizing the data
+│   └── analysis.twbx              # Tableau workbook for visualizing the data
 │
-└── README.md  # (This file)
+└── README.md                    # (This file)
 
 
 **Note:** Some filenames may differ slightly from what is shown here, but this structure should help you navigate.
