@@ -22,7 +22,7 @@ Welcome to the **Systematic Literature Review (SLR)** repository! This repositor
 
 Below is a simplified description of each main folder:
 
-.
+
 ├── database
 │   ├── EER_diagram.mwb            # MySQL Workbench EER diagram
 │   ├── database_dump.sql          # SQL dump of the database
