@@ -21,7 +21,8 @@ Welcome to the **Artificial Intelligence for Sustainable Development: A Systemat
 ## 2. Repository Structure
 
 Below is a simplified description of each main folder:
-
+<pre>
+```text
 .
 ├── database
 │   ├── sql
@@ -57,7 +58,8 @@ Below is a simplified description of each main folder:
 │
 └── README.md                           # (This file)
 
-
+```
+</pre>
 
 ---
 
