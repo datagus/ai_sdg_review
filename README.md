@@ -22,7 +22,7 @@ Welcome to the **Artificial Intelligence for Sustainable Development: A Systemat
 
 Below is a simplified description of each main folder:
 <pre>
-```text
+```
 .
 ├── database
 │   ├── sql
