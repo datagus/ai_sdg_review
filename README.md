@@ -22,7 +22,6 @@ Welcome to the **Artificial Intelligence for Sustainable Development: A Systemat
 
 Below is a simplified description of each main folder:
 <pre>
-```
 .
 ├── database
 │   ├── sql
@@ -58,7 +57,6 @@ Below is a simplified description of each main folder:
 │
 └── README.md                           # (This file)
 
-```
 </pre>
 
 ---
