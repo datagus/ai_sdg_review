@@ -1,6 +1,6 @@
-# Systematic Literature Review Repository
+# Artificial Intelligence for Sustainable Development: A Systematic Review - Repository
 
-Welcome to the **Systematic Literature Review (SLR)** repository! This repository was prepared for a study submitted to **Nature Sustainability**. It provides all relevant data, scripts, and instructions for replicating or understanding the workflow. This README is meant to guide reviewers or anyone else who may be new to GitHub or software repositories.
+Welcome to the **Artificial Intelligence for Sustainable Development: A Systematic Review** repository! This repository was prepared for a study submitted to **Nature Sustainability** journal. It provides all relevant data, scripts, and instructions for understanding and reproducing the data workflow undertaken in the review. 
 
 ---
 
@@ -22,64 +22,57 @@ Welcome to the **Systematic Literature Review (SLR)** repository! This repositor
 
 Below is a simplified description of each main folder:
 
-
 .
 ├── database
-│   ├── EER_diagram.mwb            # MySQL Workbench EER diagram
-│   ├── database_dump.sql          # SQL dump of the database
-│   ├── database_creation_script.sql  # SQL script to create the database
-│   └── additional_tables          # Folder with any extra SQL tables
-│
-├── excel_tables
-│   ├── empirical_clusters_revised.xlsx
-│   ├── environment.xlsx
-│   ├── …                          # These Excel files store data derived from or imported into SQL.
+│   ├── sql
+│   │   ├── EER_diagram.mwb             # MySQL Workbench EER diagram
+│   │   ├── database_dump.sql           # SQL dump of the database
+│   │   ├── database_creation_script.sql  # SQL script to create the database
+│   │   └── additional_tables           # Folder with any extra SQL tables
+│   │
+│   └── excel_tables
+│       ├── master_table_copy.xlsx     # Master Excel table
+│       └── individual_tables          # Folder with individual Excel data tables
 │
 ├── images
-│   └── …                          # Vector images used in the article
+│   └── …                               # Vector images used in the article
 │
 ├── python
-│   ├── pdf_extraction.py          # Script to extract text from PDFs using Python
-│   ├── pushing_to_sql.ipynb       # Script/Notebook to insert data into SQL
-│   ├── from_sql.ipynb             # Script/Notebook to pull data from SQL
-│   ├── config.json                # Configurations (e.g., database credentials)
+│   ├── pdf_extraction.py               # Script to extract text from PDFs using Python
+│   ├── pushing_to_sql.ipynb            # Script/Notebook to insert data into SQL
+│   ├── from_sql.ipynb                  # Script/Notebook to pull data from SQL
+│   ├── config.json                     # Configurations (e.g., database credentials)
 │   └── … 
 │
 ├── R-files
 │   ├── word_analysis
 │   │   ├── package_draft.R
 │   │   ├── normal_cloud.R
-│   │   └── …                      # Scripts performing word analysis, detrended correspondence analysis, etc.
+│   │   └── …                           # Scripts for word analysis, DCA, etc.
 │   └── text_files
-│       └── …                      # Output from certain R-based analyses
+│       └── …                           # The pdfs transformed into text files containing only nouns.
 │
 ├── tableau
-│   └── analysis.twbx              # Tableau workbook for visualizing the data
+│   └── analysis.twbx                   # Tableau workbook for visualizing the data
 │
-└── README.md                    # (This file)
+└── README.md                           # (This file)
 
 
-**Note:** Some filenames may differ slightly from what is shown here, but this structure should help you navigate.
 
 ---
 
 ## 3. Tools & Versions
 
-Below are the primary tools used in this study, along with the versions tested.  
-Feel free to adapt these to reflect your exact software versions:
+Below are the primary tools used in this study, along with the versions tested.  The operative system used was MacOS 15 Sequoia.
 
 - **Python** (version 3.9 or higher)
-  - Major libraries: `nltk`, `unstructured`, `pandas`, `sqlalchemy`
-- **R** (version 4.2.x)
-  - Major packages: `vegan`, `tm`, `wordcloud`, etc.
-- **MySQL** (version 8.0.x)
-  - The SQL scripts (`database_dump.sql`, `database_creation_script.sql`) were tested on MySQL 8.0.x
-- **Tableau** (version 2022.x)
-  - The workbook `analysis.twbx` was created in this version
-- **Microsoft Excel** (version 2019 or 2021)
-  - Used to store and manipulate some data
+  - conda package manager used (conda 24.11.0)
+- **R** (version 4.4.0)
+- **MySQL** (version 8.3.0)
+- **Tableau** (version 2024.3)
+- **Microsoft Excel** (vVersion 16.95.4)
 
-If you do not have these exact versions, the code and data should still work with close versions.
+If you do not have these exact versions, the code and data should still work with close versions. Even instead of using MySQL, PostgreSQL or other relational database software can be used, with minimal adaptation to the scripts.
 
 ---
 
@@ -96,33 +89,33 @@ Below is a simplified set of steps for those unfamiliar with GitHub or code repo
    - Alternatively, you can consult the `EER_diagram.mwb` file in MySQL Workbench to understand the schema.
 
 3. **Excel Files**
-   - All Excel files are located in `excel_tables`.
-   - You can open them in any modern spreadsheet application for further inspection or analysis.
+   - The Excel files are structured to mimic a relational database, with shared **ID fields** establishing relationships between tables.
+   - All Excel files of the database are located in the `excel_tables` folder (within the `database` directory).
+   - These files can be opened in any modern spreadsheet application for inspection, analysis, or integration with tools like Power BI or Tableau.
+   - The `master_table_copy.xlsx` serves as a central table, while additional tables in the `individual_tables` folder provide related data linked by these common IDs. However, for better data practice, it is recommended to use the individual tables.
 
 4. **Python Scripts**
    - The `python` folder contains scripts for:
      - **`pdf_extraction.py`**: Extract text from PDFs.  
      - **`pushing_to_sql.ipynb`**: Insert data from local files into the SQL database.  
      - **`from_sql.ipynb`**: Pull data from the SQL database into Python or Excel.  
-   - Update `config.json` with your database credentials (host, user, password) before running.
+   - To run the scrips it is necessary to have the SQL database credentials (host, user, password) before running.
 
-5. **R Scripts**
-   - The `R-files/word_analysis` folder holds scripts for advanced word analysis.
-   - **Detrended Correspondence Analysis** is performed here using relevant R packages (e.g., `vegan`).
-   - The `text_files` folder may contain intermediate outputs or text data used in analyses.
+5. **Word Analysis**
+   - The `word_analysis` folder holds R scripts for multivariate statistical word analysis.
+   - **R-Scripts** contains the code that imports the text files from the folder text_files and performs a detrented correspondance analysis plus a abundance species analysis of the nouns.
+   - The `text_files` folder contains the individual scientific papers for the review but only the nouns and in .txt format.
 
 6. **Tableau Visualization**
-   - The `tableau/analysis.twbx` file can be opened in Tableau Desktop (2022.x or above).
-   - Once opened, you may need to configure the data source connection to your local SQL database.
+   - The `tableau/analysis.twbx` file can be opened in Tableau Desktop (2024.3 or earlier versions).
+   - Once opened, you may need to configure the data source connection to your local SQL database, or you can import manuall the individual excel_tables
 
 7. **Images**
    - The `images` folder includes vector images referenced in the article.
 
 ---
 
-## 5. Contact & Additional Information
+## 5. Additional Information
 
 - For questions regarding specific scripts, please see code-level comments.
 - If you need guidance on replicating the environment or re-running any steps, please refer to the instructions inside each script and the relevant sections of this README.
-
-**Thank you** for reviewing this repository and for your interest in our systematic literature review!
