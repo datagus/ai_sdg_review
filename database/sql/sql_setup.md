@@ -10,7 +10,6 @@ sql/
 ├── EER_diagram.mwb               # MySQL Workbench visual diagram
 ├── database_dump.sql             # Full SQL dump of the database (structure + data)
 ├── database_creation_script.sql  # SQL script to create empty tables (structure only)
-└── additional_tables/            # Extra SQL scripts for optional/extended tables
 <pre>
 
 ---

@@ -1,3 +1,6 @@
 **.json
 **.ipynb_checkpoints
 .DS_Store
+word_analysis/R-files/package_draft.R
+word_analysis/R-files/wordscloud_script.R
+**.Rhistory

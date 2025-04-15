@@ -28,7 +28,6 @@ Below is a simplified description of each main folder:
 │   │   ├── EER_diagram.mwb             # MySQL Workbench EER diagram
 │   │   ├── database_dump.sql           # SQL dump of the database
 │   │   ├── database_creation_script.sql  # SQL script to create the database
-│   │   └── additional_tables           # Folder with any extra SQL tables
 │   │
 │   └── excel_tables
 │       ├── master_table_copy.xlsx     # Master Excel table
@@ -41,7 +40,6 @@ Below is a simplified description of each main folder:
 │   ├── pdf_extraction.py               # Script to extract text from PDFs using Python
 │   ├── pushing_to_sql.ipynb            # Script/Notebook to insert data into SQL
 │   ├── from_sql.ipynb                  # Script/Notebook to pull data from SQL
-│   ├── config.json                     # Configurations (e.g., database credentials)
 │   └── … 
 │
 ├── R-files

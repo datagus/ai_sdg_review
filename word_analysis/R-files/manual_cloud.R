@@ -7,7 +7,7 @@ library(dendextend) #for better dendograms
 library(plotrix)
 library(openxlsx)
 
-setwd("/Users/jorgegustavorodriguezaboytes/data-science/general/review_ai_sdg/word_analysis/text_files")
+setwd("/Users/yourself/data-science/general/review_ai_sdg/word_analysis/text_files")
 
 #----IMPORTING ARTICLES  AND STORING THEM INTO A LIST----
 
@@ -29,12 +29,14 @@ for (i in c(i:length(all_titles))){
 }
 papers_titles <- as.character(papers_titles)
 
+#articles whose number of words are extremely high or low
 remove_papers_emp <- c("11_e_Assouline D._2017_2-s2.0-85006412322.txt", "11_e_Kaklauskas A._2021_2-s2.0-85106543777.txt",
                         "12_e_Flores_2020_2-s2.0-85070232829.txt", "15_e_Hasani_2021_2-s2.0-85117710541.txt",         
                         "2_e_Rovira-Más_2021_2-s2.0-85104992071.txt" , "4_e_Banerjee_2022_2-s2.0-85140768946.txt",      
                         "6_e_2-s2.0-84874029300.txt"  , "6_e_2-s2.0-85115424775.txt",            
                         "9_e_Hayhoe T._2019_2-s2.0-85071002780.txt" , "9_e_Weber-Lewerenz B._2021_2-s2.0-85114689451.txt") 
 
+#articles whose number of words are extremely high or low
 remove_papers_cr <- c("3_r_Clark_2020_2-s2.0-85079650530.txt",
                       "6_r_2-s2.0-85080922176.txt",
                       "3_r_Burton_2021_2-s2.0-85102508002.txt",
@@ -53,9 +55,9 @@ remove_papers_cr <- c("3_r_Clark_2020_2-s2.0-85079650530.txt",
                       "7_r_Goswami R.K._2022_2-s2.0-85136105898.txt"
 )
 
-papers_titles <- papers_titles[!papers_titles %in% remove_papers_emp] #for empirical papers
+papers_titles <- papers_titles[!papers_titles %in% remove_papers_emp] #removing empirical papers
 
-papers_titles <- papers_titles[!papers_titles %in% remove_papers_cr] #for conceptual reviews
+papers_titles <- papers_titles[!papers_titles %in% remove_papers_cr] #remvoing conceptual/reviews papers
 npapers <- length(papers_titles)
 end <- npapers
 
@@ -181,16 +183,17 @@ paste0("The higher frequency to get the top20 is ", freq)
 
 moritz2<- word_df[apply(ifelse(word_df>0,1,0),1,sum)>freq,]
 abundance <- moritz2
-abundancet <- t(abundance)
-abundancet <- abundancet[rowSums(abundancet)>0,]
+abundancet <- t(abundance) #transposing the dataframe, so words are in row and articles in columns
+abundancet <- abundancet[rowSums(abundancet)>0,] #getting rid of rows (words that didn't appear in any article)
 abundancet<- log(abundancet+1)  #scaling
 
 
-model<-decorana(abundancet,iweigh=0, ira=0)
+model<-decorana(abundancet,iweigh=0, ira=0) #applying the detretended correspondence analysis
 plot(model)
 
 set.seed(123)
 ## Putting the optimal clusters-----------------------
+#In this section, a for loop runs to visually and manually search the distribution of clusters
 ?indval
 modelclust<-agnes(abundancet,method="ward")
 nk<-2 # initial number of clusters
@@ -266,11 +269,11 @@ barplot(t(cutmodel_m[1:nk, 1:(nk+1)]),
 
 
 ##---PLOTTING-----
-
-nk <- 8
-cutmodel <-cutree(modelclust,k=nk)
+#creatint the word cloud
+nk <- 8 #number of cluster
+cutmodel <-cutree(modelclust,k=nk) #prunning the model
 table(cutmodel)
-temp5<-indval(abundancet,cutmodel,numitr=1000)
+temp5<-indval(abundancet,cutmodel,numitr=1000) #getting abundance indicators
 summary(temp5)
 
 #getting the DCA coordinates for the plot
@@ -285,18 +288,18 @@ final_cluster<-cluster_dcap[which(apply(cluster_dcap[,c(1:nk)],1,mean)>0.01),] #
 par(xpd=T)
 par(mar=c(4,4,0.2,0.2))
 plot(final_cluster$DCA1,final_cluster$DCA2,xlim=c(min(final_cluster$DCA1)-0,max(final_cluster$DCA1)+0),ylim=c(min(final_cluster$DCA2)-0,max(final_cluster$DCA2)+0),xlab="DCA1",ylab="DCA2",type="n")
-wordnumber<-5
+wordnumber<-5 #specifiying the number of words.
 
 subsets <- list()
 
-
+#creating the subsets of words
 for (i in 1:nk){
   subsets[[i]] <- final_cluster[order(final_cluster[,i],decreasing=T)[c(1: wordnumber)],]
   #text(subsets[[i]]$DCA1[c(1:wordnumber)],subsets[[i]]$DCA2[c(1:wordnumber)],labels=rownames(subsets[[i]])[c(1:wordnumber)],col=colores[i] ,cex=0.8)
   subsets[[i]]$cluster <- i
 }
 
-
+#The plotting was done manually for the purpose to avoid the visual overlap of words.
 #-----EMPIRICAL ARTICLES------
 par(xpd=T)
 par(mar=c(4,4,0.2,0.2))
@@ -352,7 +355,7 @@ text(subsets[[8]]$DCA1[c(5)],subsets[[8]]$DCA2[c(5)]+0.15, labels=rownames(subse
 
 
 
-#-----CONCEPTUAL ARTICLES-----
+#-----CONCEPTUAL/REVIEW ARTICLES-----
 par(xpd=T)
 par(mar=c(4,4,0.2,0.2))
 plot(final_cluster$DCA1,final_cluster$DCA2,xlim=c(min(final_cluster$DCA1)-0,max(final_cluster$DCA1)+0),ylim=c(min(final_cluster$DCA2)+1.5,max(final_cluster$DCA2)-0),xlab="DCA1",ylab="DCA2",type="n")
@@ -459,7 +462,7 @@ for (i in 1:nrow(grupos)) {
   grupos$palabras[i] <- paste(palabras_for_cluster, collapse = ", ") # or `I(list(palabras_for_cluster))` if you want a list
 }
 
-setwd("/Users/jorgegustavorodriguezaboytes/Statstutorial/")
+setwd("/Users/yourself/data-science/general/review_ai_sdg/word_analysis/")
 write.xlsx(grupos, "concepreview_clusters_revised.xlsx", rowNames = FALSE)
 
 
