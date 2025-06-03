@@ -4,3 +4,4 @@
 /word_analysis/R-files/package_draft.R
 /word_analysis/R-files/wordscloud_script.R
 *.Rhistory
+/word_analysis/text_files/.Rhistory
