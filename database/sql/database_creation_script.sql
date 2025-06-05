@@ -130,3 +130,16 @@ CREATE TABLE clusters (
 );
 
 SELECT * FROM clusters;
+
+DROP TABLE IF EXISTS clusters_revcon;
+CREATE TABLE clusters_revcon (
+	eid VARCHAR(50),
+    words TEXT,
+    cluster_number CHAR(5),
+    cluster_name VARCHAR(255),
+    article_file TEXT,
+    PRIMARY KEY (eid),
+    FOREIGN KEY (eid) REFERENCES articles(eid)
+);
+
+SELECT * FROM clusters_revcon;
